@@ -8,7 +8,7 @@ docker build --rm -t facio/riemann ./riemann
 # Run container
 docker run --name myriemann -v /home/fabiano/dev/docker-riemann/riemann/riemann.config:/etc/riemann/riemann.config -p 5555:5555 -p 5556:5556 facio/riemann
 
-docker run --name riemannmon --dns=8.8.8.8 -v /home/fabiano/dev/docker-riemann/riemann/riemann.config:/etc/riemann/riemann.config -p 5555:5555 -p 5556:5556 mon/riemann
+docker run --name riemannmon --dns=8.8.8.8 --add-host elasticmon:172.17.0.2 -v /home/fabiano/dev/docker-riemann/riemann/riemann.config:/etc/riemann/riemann.config -p 5555:5555 -p 5556:5556 mon/riemann
 
 # Connect to running docker container
 docker exec -it myriemann /bin/bash
