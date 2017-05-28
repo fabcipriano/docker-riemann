@@ -7,9 +7,10 @@
 
 (defn formatindexes [event]
   (let [es_index (makeindexstr event)]
-    
-    (if (string/ends-with? es_index "/") 
-      (string/join "" (drop-last es_index))
-      es_index)))
+    (string/replace
+      (if (string/ends-with? es_index "/") 
+        (string/join "" (drop-last es_index))
+        es_index)
+      #"/" ".")))
 
     
